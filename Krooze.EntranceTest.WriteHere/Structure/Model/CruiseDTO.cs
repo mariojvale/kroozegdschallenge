@@ -12,6 +12,8 @@ namespace Krooze.EntranceTest.WriteHere.Structure.Model
         /// Total Value of the Cruise
         /// </summary>
         public decimal TotalValue { get; set; }
+
+        
         /// <summary>
         /// Total Cabin (CAB) Value
         /// </summary>
