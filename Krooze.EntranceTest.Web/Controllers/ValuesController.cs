@@ -1,5 +1,12 @@
 ﻿using System.Collections.Generic;
+using Krooze.EntranceTest.Tests;
 using Microsoft.AspNetCore.Mvc;
+using Krooze.EntranceTest.WriteHere.Tests;
+using Krooze.EntranceTest.WriteHere.Tests.WebTests;
+using Newtonsoft.Json.Linq;
+using Krooze.EntranceTest.WriteHere.Tests.InjectionTests;
+using Krooze.EntranceTest.WriteHere.Tests.LogicTests;
+using Krooze.EntranceTest.WriteHere.Structure.Model;
 
 namespace Krooze.EntranceTest.Web.Controllers
 {
@@ -7,24 +14,35 @@ namespace Krooze.EntranceTest.Web.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+      
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<JObject> Get()
         {
-            return new string[] { "value1", "value2" };
+            WebTest web = new WebTest();
+            return web.GetAllMovies();
+            //return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<List<CruiseDTO>> Get(CruiseRequestDTO id)
         {
-            return "value";
+            InjectionTest injection = new InjectionTest();
+            return injection.GetCruises(id);
+            
+            //var webtests = new WebTest();
+            //return webtests.GetAllMovies();
+            //return "value";
         }
 
         // POST api/values
         [HttpPost]
         public void Post([FromBody] string value)
         {
+
+            XMLTest logic = new XMLTest();
+            logic.TranslateXML();
         }
 
         // PUT api/values/5
